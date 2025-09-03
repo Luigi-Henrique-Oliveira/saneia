@@ -1,5 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Primária (usada no topo, BottomNavigation selecionado, botões principais) -->
+    <color name="colorPrimary">#007200</color>
+
+    <!-- Variante primária (efeito de destaque, AppBar, bordas) -->
+    <color name="colorPrimaryVariant">#004B23</color>
+
+    <!-- Secundária (botões de ação secundária, ícones importantes) -->
+    <color name="colorSecondary">#70E000</color>
+
+    <!-- Fundo principal do app -->
+    <color name="colorBackground">#CCFF33</color>
+
+    <!-- Superfície (cards, menus, bottom nav não selecionado) -->
+    <color name="colorSurface">#9EF01A</color>
+
+    <!-- Texto primário -->
+    <color name="colorOnPrimary">#FFFFFF</color>
+
+    <!-- Texto em fundos claros -->
+    <color name="colorOnBackground">#000000</color>
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>

@@ -16,6 +16,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.painterResource
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.sergio.saneia.navigation.ButtonNavItem
@@ -27,9 +28,9 @@ fun MainScreen(){
     val navController = rememberNavController()
     val items = listOf(
         ButtonNavItem(Screen.HomeScreen.route, Icons.Default.Home, "Inicio"),
-        ButtonNavItem(Screen.SecondScreen.route, Icons.Default.Search,"Nao"),
-        ButtonNavItem(Screen.ThirdScreen.route,Icons.Default.Build,"sei"),
-        ButtonNavItem(Screen.FourScreen.route,Icons.Default.Settings,"oq por")
+        ButtonNavItem(Screen.SecondScreen.route, painter = painterResource(id = R.drawable.baseline_map_24), label = "Local"),
+        ButtonNavItem(Screen.ThirdScreen.route, painter = painterResource(id = R.drawable.baseline_videogame_asset_24), label = "Quiz"),
+        ButtonNavItem(Screen.FourScreen.route,Icons.Default.Settings,"NoN")
 
     )
     Scaffold(
@@ -51,7 +52,11 @@ fun MainScreen(){
                                       }
                                   }
                         },
-                        icon = { Icon(imageVector = item.icon, contentDescription = item.label)},
+                        icon = {
+                            when{
+                                item.icon != null ->Icon(imageVector = item.icon, contentDescription = item.label)
+                                item.painter!= null-> Icon(painter = item.painter , contentDescription = item.label)
+                        }},
                         label = { Text(text = item.label)}
                     )
 

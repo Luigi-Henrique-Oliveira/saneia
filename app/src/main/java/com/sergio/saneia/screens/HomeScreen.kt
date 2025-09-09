@@ -1,87 +1,148 @@
 package com.sergio.saneia.screens
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
-object AppTypography {
-    val headline = TextStyle(
-        fontSize = 20.sp,
-        fontWeight = FontWeight.Bold,
-        color = Color(0xFF1A1A1A)
-    )
-
-    val body = TextStyle(
-        fontSize = 16.sp,
-        fontWeight = FontWeight.Normal,
-        color = Color(0xFF333333)
-    )
-
-    val note = TextStyle(
-        fontSize = 13.sp,
-        fontWeight = FontWeight.SemiBold,
-        color = Color(0xFF666666)
-    )
-}
-
-
 @Composable
-fun HomeScreen(){
-    HomeCard()
-}
-@Composable
-fun HomeCard() {
-    Card(
+fun HomeScreen(innerPadding: PaddingValues = PaddingValues()) {
+    Surface(
         modifier = Modifier
-            .padding(16.dp)
-            .fillMaxWidth(),
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.primaryContainer
-        ),
-        shape = MaterialTheme.shapes.extraLarge
+            .fillMaxSize()
+            .padding(innerPadding)
     ) {
         Column(
-            modifier = Modifier.padding(20.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp)
+            modifier = Modifier
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState())
+                .padding(16.dp)
+                .padding(bottom = 32.dp),
+            verticalArrangement = Arrangement.spacedBy(20.dp)
         ) {
+            // ---------- TÍTULO ----------
             Text(
-                text = "Direito ao Saneamento Básico",
-                style = AppTypography.headline
+                text = "Pesquisa",
+                style = MaterialTheme.typography.headlineSmall.copy(
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 24.sp,
+                    color = MaterialTheme.colorScheme.primary
+                )
+            )
+
+            // ---------- INTRODUÇÃO ----------
+            Text(
+                text = "O saneamento básico é um direito fundamental garantido pela Constituição Federal " +
+                        "e regulamentado pela Lei nº 11.445, de 5 de janeiro de 2007, que estabelece " +
+                        "diretrizes nacionais para garantir abastecimento de água potável, " +
+                        "coleta e tratamento de esgoto, manejo adequado de resíduos sólidos " +
+                        "e drenagem urbana. Apesar disso, muitas regiões brasileiras ainda sofrem " +
+                        "com a ausência desses serviços essenciais.",
+                style = MaterialTheme.typography.bodyMedium.copy(lineHeight = 22.sp)
+            )
+
+            Divider(color = MaterialTheme.colorScheme.outlineVariant)
+
+            // ---------- CONTEXTO LOCAL ----------
+            Text(
+                text = "Juazeiro do Norte – CE",
+                style = MaterialTheme.typography.titleMedium.copy(
+                    fontWeight = FontWeight.SemiBold,
+                    fontSize = 20.sp,
+                    color = MaterialTheme.colorScheme.secondary
+                )
             )
 
             Text(
-                text = "Todo cidadão tem direito a água limpa, coleta e tratamento de esgoto, " +
-                        "gestão adequada de resíduos e drenagem segura contra enchentes.",
-                style = AppTypography.body
+                text = "Na Rua Vicente Oliveira de Brito, no bairro Planalto, moradores convivem diariamente " +
+                        "com a falta de infraestrutura: esgoto correndo a céu aberto, interrupções no fornecimento " +
+                        "de água, ausência de pavimentação e pontos de acúmulo de lixo. Esses problemas " +
+                        "afetam não apenas a saúde pública, mas também a dignidade e a qualidade de vida da comunidade.",
+                style = MaterialTheme.typography.bodyMedium.copy(lineHeight = 22.sp)
+            )
+
+            // ---------- DADOS DA PESQUISA ----------
+            Text(
+                text = "Principais dados levantados:",
+                style = MaterialTheme.typography.titleSmall.copy(
+                    fontWeight = FontWeight.Bold
+                )
+            )
+
+            Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                Text("→ 70% dos moradores têm acesso à água encanada, mas sofrem com interrupções diárias.",
+                    style = MaterialTheme.typography.bodySmall)
+                Text("→ 0% possuem rede de esgoto – os dejetos são descartados a céu aberto.",
+                    style = MaterialTheme.typography.bodySmall)
+                Text("→ 60% contam com coleta regular de lixo, mas ainda há pontos de descarte irregular.",
+                    style = MaterialTheme.typography.bodySmall)
+                Text("→ A falta de pavimentação deixa a rua com lama no inverno e poeira no verão.",
+                    style = MaterialTheme.typography.bodySmall)
+            }
+
+            Divider(color = MaterialTheme.colorScheme.outlineVariant)
+
+            // ---------- IMPACTOS ----------
+            Text(
+                text = "Impactos observados",
+                style = MaterialTheme.typography.titleSmall.copy(
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.error
+                )
+            )
+
+            Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                Text("• Proliferação de doenças como diarreia, leptospirose, verminoses e arboviroses.",
+                    style = MaterialTheme.typography.bodyMedium)
+                Text("• Contaminação do solo e risco de poluição de lençóis freáticos.",
+                    style = MaterialTheme.typography.bodyMedium)
+                Text("• Aumento da exclusão social e redução da qualidade de vida.",
+                    style = MaterialTheme.typography.bodyMedium)
+            }
+
+            // ---------- DISCUSSÃO ----------
+            Text(
+                text = "Discussão",
+                style = MaterialTheme.typography.titleSmall.copy(
+                    fontWeight = FontWeight.SemiBold,
+                    color = MaterialTheme.colorScheme.tertiary
+                )
             )
 
             Text(
-                text = "Esses serviços devem ser prestados com qualidade, continuidade, " +
-                        "transparência e participação social.",
-                style = AppTypography.body
+                text = "A realidade da comunidade evidencia que a ausência de saneamento básico não é apenas " +
+                        "um problema técnico ou de infraestrutura, mas também social e ambiental. " +
+                        "Sem esgoto tratado, água regular e ruas pavimentadas, a população fica mais exposta " +
+                        "a riscos de saúde, exclusão econômica e degradação ambiental.",
+                style = MaterialTheme.typography.bodyMedium.copy(lineHeight = 22.sp)
             )
 
-            Divider(Modifier.padding(vertical = 4.dp))
+            // ---------- CONCLUSÃO ----------
+            Text(
+                text = "Conclusão",
+                style = MaterialTheme.typography.titleSmall.copy(
+                    fontWeight = FontWeight.Bold
+                )
+            )
 
             Text(
-                text = "Lei nº 11.445/2007 (Marco Legal do Saneamento)",
-                style = AppTypography.note
+                text = "Garantir saneamento básico é garantir dignidade. A Lei nº 11.445/2007 já define " +
+                        "os princípios e diretrizes, mas sua efetivação depende de investimentos consistentes " +
+                        "e políticas públicas que priorizem comunidades em vulnerabilidade, como a Rua Vicente " +
+                        "Oliveira de Brito, em Juazeiro do Norte – CE.",
+                style = MaterialTheme.typography.bodyMedium.copy(lineHeight = 22.sp)
             )
+
+            Spacer(modifier = Modifier.height(40.dp)) // respiro final
         }
     }
 }
-
-

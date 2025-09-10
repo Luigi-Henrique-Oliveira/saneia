@@ -29,7 +29,6 @@ import androidx.navigation.compose.rememberNavController
 import com.sergio.saneia.navigation.ButtonNavItem
 import com.sergio.saneia.navigation.NavGraph
 import com.sergio.saneia.navigation.Screen
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(){

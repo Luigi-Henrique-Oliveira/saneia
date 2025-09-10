@@ -1,6 +1,7 @@
 package com.sergio.saneia.screens
 
-import androidx.compose.foundation.background
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -10,12 +11,20 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.foundation.text.ClickableText
+import androidx.compose.ui.text.withStyle
 
 @Composable
 fun HomeScreen(innerPadding: PaddingValues = PaddingValues()) {
+    val context = LocalContext.current
+
     Surface(
         modifier = Modifier
             .fillMaxSize()
@@ -109,7 +118,6 @@ fun HomeScreen(innerPadding: PaddingValues = PaddingValues()) {
                     style = MaterialTheme.typography.bodyMedium)
             }
 
-            // ---------- DISCUSSÃO ----------
             Text(
                 text = "Discussão",
                 style = MaterialTheme.typography.titleSmall.copy(
@@ -126,7 +134,6 @@ fun HomeScreen(innerPadding: PaddingValues = PaddingValues()) {
                 style = MaterialTheme.typography.bodyMedium.copy(lineHeight = 22.sp)
             )
 
-            // ---------- CONCLUSÃO ----------
             Text(
                 text = "Conclusão",
                 style = MaterialTheme.typography.titleSmall.copy(
@@ -142,7 +149,45 @@ fun HomeScreen(innerPadding: PaddingValues = PaddingValues()) {
                 style = MaterialTheme.typography.bodyMedium.copy(lineHeight = 22.sp)
             )
 
-            Spacer(modifier = Modifier.height(40.dp)) // respiro final
+            Divider(color = MaterialTheme.colorScheme.outlineVariant, thickness = 1.dp)
+
+            Text(
+                text = "Referências",
+                style = MaterialTheme.typography.titleSmall.copy(
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 18.sp
+                )
+            )
+
+            val annotatedLink = buildAnnotatedString {
+                pushStringAnnotation(
+                    tag = "URL",
+                    annotation = "https://www.planalto.gov.br/ccivil_03/_Ato2007-2010/2007/Lei/L11445compilado.htm"
+                )
+                withStyle(
+                    style = SpanStyle(
+                        color = MaterialTheme.colorScheme.primary,
+                        textDecoration = TextDecoration.Underline,
+                        fontWeight = FontWeight.Medium
+                    )
+                ) {
+                    append("Lei nº 11.445/2007")
+                }
+                pop()
+            }
+
+            ClickableText(
+                text = annotatedLink,
+                onClick = { offset ->
+                    annotatedLink.getStringAnnotations(tag = "URL", start = offset, end = offset)
+                        .firstOrNull()?.let { annotation ->
+                            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(annotation.item))
+                            context.startActivity(intent)
+                        }
+                }
+            )
+
+            Spacer(modifier = Modifier.height(40.dp))
         }
     }
 }

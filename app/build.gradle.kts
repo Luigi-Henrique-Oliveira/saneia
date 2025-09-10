@@ -55,6 +55,8 @@ dependencies {
     val compose_version = "1.6.0-alpha08"
 
 
+    implementation("org.osmdroid:osmdroid-android:6.1.16")
+
     implementation("androidx.navigation:navigation-compose:$nav_version")
     implementation("androidx.compose.ui:ui:$compose_version")
     implementation("androidx.compose.material:material:$compose_version")

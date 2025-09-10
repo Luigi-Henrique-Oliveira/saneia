@@ -48,12 +48,12 @@ fun QuizScreen() {
             Question(
                 text = "De que forma a falta de água encanada impacta o dia a dia das famílias?",
                 options = listOf(
-                    "Dependência de poços ou reservatórios improvisados",
                     "Maior necessidade de transporte coletivo",
+                    "Dependência de poços ou reservatórios improvisados",
                     "Redução de áreas verdes disponíveis",
                     "Dificuldade em obter acesso à internet"
                 ),
-                correctIndex = 0
+                correctIndex = 1
             ),
             Question(
                 text = "Qual risco ambiental está associado à ausência de rede de esgoto?",
@@ -68,22 +68,22 @@ fun QuizScreen() {
             Question(
                 text = "Por que ruas sem pavimentação causam transtornos para os moradores?",
                 options = listOf(
-                    "Acúmulo de poeira no período seco e lama em dias de chuva",
                     "Dificuldade de acesso ao comércio eletrônico",
                     "Diminuição da rede de energia elétrica",
+                    "Acúmulo de poeira no período seco e lama em dias de chuva",
                     "Excesso de áreas destinadas ao lazer"
                 ),
-                correctIndex = 0
+                correctIndex = 2
             ),
             Question(
                 text = "O descarte incorreto do lixo pode resultar em:",
                 options = listOf(
-                    "Proliferação de insetos e roedores",
                     "Aumento da arrecadação de impostos",
                     "Diminuição da densidade populacional",
-                    "Melhoria automática da qualidade do ar"
+                    "Melhoria automática da qualidade do ar",
+                    "Proliferação de insetos e roedores"
                 ),
-                correctIndex = 0
+                correctIndex = 3
             ),
             Question(
                 text = "Além de obras, qual iniciativa pode melhorar a situação do bairro?",
